@@ -10,7 +10,6 @@ const Home = () => {
     <div className='flex flex-col items-center space-y-7 text-center'>
       
       <Hero />
-      
        <Compaines/>
        <CourseSection/>
        <TestemonalSection/>

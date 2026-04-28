@@ -15,6 +15,7 @@ const AppContextProvider =({children})=>{
     const FetchAllCourses = async ()=>{
         try{
             setAllCourses(dummyCourses)
+           
             
         }catch(err){
                 console.error("Error fetching courses:", err);
