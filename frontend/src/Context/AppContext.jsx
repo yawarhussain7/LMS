@@ -10,6 +10,7 @@ const AppContextProvider =({children})=>{
     const navigate = useNavigate();
     const [allCourses, setAllCourses] = useState([]);
     const [isEducator, setIsEducator] = useState(true);
+    const [enrolledCourse,SetEnrolledCourse] = useState([]);
 
     
     // Fetch all courses and set to state
@@ -20,6 +21,11 @@ const AppContextProvider =({children})=>{
                 console.error("Error fetching courses:", err);
         }
     }
+
+    // Fetch user enrolled courses
+const FetchUserEnrolledCourses=()=>{
+    SetEnrolledCourse(dummyCourses)   
+}
 
     // Funcatoin to calculate average rating of a course
     const calculateAverageRating = (course)=>{
@@ -65,9 +71,21 @@ const calculateNumberOfLectures = (course)=>{
 }
     useEffect(()=>{
         FetchAllCourses()
+        FetchUserEnrolledCourses()
     },[])
     
-    const value = { currency, allCourses, navigate, calculateAverageRating,calculateCourseChapterTime,calculateCourseDuration,calculateNumberOfLectures,isEducator,setIsEducator }
+    const value = {
+        currency,
+        allCourses,
+        navigate,
+        calculateAverageRating,
+        calculateCourseChapterTime,
+        calculateCourseDuration,
+        calculateNumberOfLectures,
+        isEducator,
+        setIsEducator,FetchUserEnrolledCourses,
+        enrolledCourse 
+    }
 
 
     return (
