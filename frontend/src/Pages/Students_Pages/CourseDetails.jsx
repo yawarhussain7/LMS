@@ -5,6 +5,7 @@ import Loading from '../../Components/Students/Loading'
 import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
 import Footer from '../../Components/Students/Footer'
+import YouTube from 'react-youtube'
 
 const CourseDetails = () => {
 
@@ -12,6 +13,7 @@ const CourseDetails = () => {
   const [courseData, setCourseData] = useState(null)
   const [openSection, setOpenSection] = useState({})
   const [isAlread_Enrolled, setIsAlread_Enrolled] = useState(false)
+  const [playerData, setplayerData] = useState(null)
 
   const {
     allCourses,
@@ -119,9 +121,8 @@ const CourseDetails = () => {
                   >
                     <div className="flex items-center gap-3">
                       <img
-                        className={`w-4 transition-transform ${
-                          openSection[index] ? "rotate-180" : ""
-                        }`}
+                        className={`w-4 transition-transform ${openSection[index] ? "rotate-180" : ""
+                          }`}
                         src={assets.down_arrow_icon}
                         alt="arrow"
                       />
@@ -138,9 +139,8 @@ const CourseDetails = () => {
 
                   {/* CONTENT */}
                   <div
-                    className={`transition-all duration-300 overflow-hidden ${
-                      openSection[index] ? "max-h-96" : "max-h-0"
-                    }`}
+                    className={`transition-all duration-300 overflow-hidden ${openSection[index] ? "max-h-96" : "max-h-0"
+                      }`}
                   >
                     <ul className="border-t bg-gray-50 pl-6 pr-3 py-3 text-sm text-gray-600 space-y-2">
                       {chapter.chapterContent.map((lecture, i) => (
@@ -157,7 +157,11 @@ const CourseDetails = () => {
 
                           <div className="flex items-center gap-3 text-xs">
                             {lecture.isPreviewFree && (
-                              <span className="text-blue-500">Preview</span>
+                              <span onClick={() => {
+                                setplayerData({
+                                  videoId: lecture.lectureUrl.split('/').pop()
+                                })
+                              }} className="text-blue-500 cursor-pointer">Preview</span>
                             )}
                             <span>
                               {humanizeDuration(
@@ -201,11 +205,23 @@ const CourseDetails = () => {
 
           <div className="bg-white shadow-[0px_4px_15px_2px_rgba(0,0,0,0.08)] sticky top-20 max-h-[calc(100vh-5rem)] overflow-y-auto">
 
-            <img
-              src={courseData.courseThumbnail}
-              className="w-full object-cover"
-              alt="thumbnail"
-            />
+            {
+              playerData ? (
+                <YouTube videoId={playerData.videoId}
+                  opts={{
+                    playerVars: { autoplay: 1 }
+                  }}
+                  iframeClassName="w-full aspect-video"
+                />
+              ) : (
+                <img
+                  src={courseData.courseThumbnail}
+                  className="w-full object-cover"
+                  alt="thumbnail"
+                />
+              )
+            }
+
 
             <div className="p-5">
 
@@ -270,7 +286,7 @@ const CourseDetails = () => {
                 </ul>
               </div>
 
-              
+
 
             </div>
           </div>
