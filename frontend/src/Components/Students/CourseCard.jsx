@@ -7,7 +7,7 @@ const CourseCard = ({course}) => {
   const {currency, calculateAverageRating} = useContext(AppContext)
 
   return (
-   <Link to={'/course/'+course._id} onClick={()=>{scrollTo(0,0)}} 
+   <Link to={'/course-details/'+course._id} onClick={()=>{scrollTo(0,0)}} 
    className='border pb-6 overflow-hidden rounded-lg hover:shadow-lg transition-shadow duration-300 hover:border-blue-500/70'>
     <img className='w-full' src={course.courseThumbnail} alt={course.courseTitle} />
     <div className='p-3 text-left'>

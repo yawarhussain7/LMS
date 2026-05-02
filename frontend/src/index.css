@@ -4,3 +4,10 @@
 body {
   font-family: 'Outfit', sans-serif;
 }
+
+html{
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar{
+  display: none;
+}

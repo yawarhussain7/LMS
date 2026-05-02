@@ -27,15 +27,17 @@ const App = () => {
       <Routes>
          {/* students routes  */}
         <Route path='/' element={<Home />} />
-        <Route path='/course-details' element={<CourseDetails />} />
         <Route path='/course-list/:input' element={<CoursesList />} />
-
         <Route path='/course-list' element={<CoursesList />} />
-        <Route path='/my-enrollments' element={<MyEnrollments />} />
-        <Route path='/courses-list/:id' element={<CoursesList />} />
+
         <Route path='/courses/:id' element={<CoursesList />} />
+        <Route path='/my-enrollments' element={<MyEnrollments />} />
         <Route path='player/:courseId' element={<Player />} />
         <Route path='/loading/:path' element={<Loading />} />
+
+        <Route path='/course-details/:id' element={<CourseDetails />} />
+
+        {/* <Route path='/courses-list/:id' element={<CoursesList />} /> */}
         {/* educator routes  */}
         <Route path='/educator' element={<Educator />} >
           <Route path='/educator' element={<Dashboard />} />
