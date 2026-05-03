@@ -40,7 +40,7 @@ const App = () => {
         {/* <Route path='/courses-list/:id' element={<CoursesList />} /> */}
         {/* educator routes  */}
         <Route path='/educator' element={<Educator />} >
-          <Route path='/educator' element={<Dashboard />} />
+          <Route path='/educator/dashboard' element={<Dashboard />} />
           <Route path='/educator/add-course' element={<AddCourse />} />
           <Route path='/educator/my-courses' element={<MyCourses />} />
           <Route path='/educator/enrolled-students' element={<EnrolledStudents />} />
